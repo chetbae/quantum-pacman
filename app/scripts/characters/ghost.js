@@ -12,7 +12,15 @@ class Ghost {
     // QUANTUM
     this.quantumVisible = false;
 
+    window.addEventListener("activateFlash", () => {
+      this.activateFlash();
+    });
+
     this.reset();
+  }
+
+  activateFlash() {
+    this.expose(500);
   }
 
   // New method to expose ghost for a specified duration
