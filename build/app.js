@@ -1110,57 +1110,57 @@ class Pacman {
 
 class GameCoordinator {
   constructor() {
-    this.gameUi = document.getElementById('game-ui');
-    this.rowTop = document.getElementById('row-top');
-    this.mazeDiv = document.getElementById('maze');
-    this.mazeImg = document.getElementById('maze-img');
-    this.mazeCover = document.getElementById('maze-cover');
-    this.pointsDisplay = document.getElementById('points-display');
-    this.highScoreDisplay = document.getElementById('high-score-display');
-    this.extraLivesDisplay = document.getElementById('extra-lives');
-    this.fruitDisplay = document.getElementById('fruit-display');
-    this.mainMenu = document.getElementById('main-menu-container');
-    this.gameStartButton = document.getElementById('game-start');
-    this.pauseButton = document.getElementById('pause-button');
-    this.soundButton = document.getElementById('sound-button');
-    this.leftCover = document.getElementById('left-cover');
-    this.rightCover = document.getElementById('right-cover');
-    this.pausedText = document.getElementById('paused-text');
-    this.bottomRow = document.getElementById('bottom-row');
-    this.movementButtons = document.getElementById('movement-buttons');
+    this.gameUi = document.getElementById("game-ui");
+    this.rowTop = document.getElementById("row-top");
+    this.mazeDiv = document.getElementById("maze");
+    this.mazeImg = document.getElementById("maze-img");
+    this.mazeCover = document.getElementById("maze-cover");
+    this.pointsDisplay = document.getElementById("points-display");
+    this.highScoreDisplay = document.getElementById("high-score-display");
+    this.extraLivesDisplay = document.getElementById("extra-lives");
+    this.fruitDisplay = document.getElementById("fruit-display");
+    this.mainMenu = document.getElementById("main-menu-container");
+    this.gameStartButton = document.getElementById("game-start");
+    this.pauseButton = document.getElementById("pause-button");
+    this.soundButton = document.getElementById("sound-button");
+    this.leftCover = document.getElementById("left-cover");
+    this.rightCover = document.getElementById("right-cover");
+    this.pausedText = document.getElementById("paused-text");
+    this.bottomRow = document.getElementById("bottom-row");
+    this.movementButtons = document.getElementById("movement-buttons");
 
     this.mazeArray = [
-      ['XXXXXXXXXXXXXXXXXXXXXXXXXXXX'],
-      ['XooooooooooooXXooooooooooooX'],
-      ['XoXXXXoXXXXXoXXoXXXXXoXXXXoX'],
-      ['XOXXXXoXXXXXoXXoXXXXXoXXXXOX'],
-      ['XoXXXXoXXXXXoXXoXXXXXoXXXXoX'],
-      ['XooooooooooooooooooooooooooX'],
-      ['XoXXXXoXXoXXXXXXXXoXXoXXXXoX'],
-      ['XoXXXXoXXoXXXXXXXXoXXoXXXXoX'],
-      ['XooooooXXooooXXooooXXooooooX'],
-      ['XXXXXXoXXXXX XX XXXXXoXXXXXX'],
-      ['XXXXXXoXXXXX XX XXXXXoXXXXXX'],
-      ['XXXXXXoXX          XXoXXXXXX'],
-      ['XXXXXXoXX XXXXXXXX XXoXXXXXX'],
-      ['XXXXXXoXX X      X XXoXXXXXX'],
-      ['      o   X      X   o      '],
-      ['XXXXXXoXX X      X XXoXXXXXX'],
-      ['XXXXXXoXX XXXXXXXX XXoXXXXXX'],
-      ['XXXXXXoXX          XXoXXXXXX'],
-      ['XXXXXXoXX XXXXXXXX XXoXXXXXX'],
-      ['XXXXXXoXX XXXXXXXX XXoXXXXXX'],
-      ['XooooooooooooXXooooooooooooX'],
-      ['XoXXXXoXXXXXoXXoXXXXXoXXXXoX'],
-      ['XoXXXXoXXXXXoXXoXXXXXoXXXXoX'],
-      ['XOooXXooooooo  oooooooXXooOX'],
-      ['XXXoXXoXXoXXXXXXXXoXXoXXoXXX'],
-      ['XXXoXXoXXoXXXXXXXXoXXoXXoXXX'],
-      ['XooooooXXooooXXooooXXooooooX'],
-      ['XoXXXXXXXXXXoXXoXXXXXXXXXXoX'],
-      ['XoXXXXXXXXXXoXXoXXXXXXXXXXoX'],
-      ['XooooooooooooooooooooooooooX'],
-      ['XXXXXXXXXXXXXXXXXXXXXXXXXXXX'],
+      ["XXXXXXXXXXXXXXXXXXXXXXXXXXXX"],
+      ["XooooooooooooXXooooooooooooX"],
+      ["XoXXXXoXXXXXoXXoXXXXXoXXXXoX"],
+      ["XOXXXXoXXXXXoXXoXXXXXoXXXXOX"],
+      ["XoXXXXoXXXXXoXXoXXXXXoXXXXoX"],
+      ["XooooooooooooooooooooooooooX"],
+      ["XoXXXXoXXoXXXXXXXXoXXoXXXXoX"],
+      ["XoXXXXoXXoXXXXXXXXoXXoXXXXoX"],
+      ["XooooooXXooooXXooooXXooooooX"],
+      ["XXXXXXoXXXXX XX XXXXXoXXXXXX"],
+      ["XXXXXXoXXXXX XX XXXXXoXXXXXX"],
+      ["XXXXXXoXX          XXoXXXXXX"],
+      ["XXXXXXoXX XXXXXXXX XXoXXXXXX"],
+      ["XXXXXXoXX X      X XXoXXXXXX"],
+      ["      o   X      X   o      "],
+      ["XXXXXXoXX X      X XXoXXXXXX"],
+      ["XXXXXXoXX XXXXXXXX XXoXXXXXX"],
+      ["XXXXXXoXX          XXoXXXXXX"],
+      ["XXXXXXoXX XXXXXXXX XXoXXXXXX"],
+      ["XXXXXXoXX XXXXXXXX XXoXXXXXX"],
+      ["XooooooooooooXXooooooooooooX"],
+      ["XoXXXXoXXXXXoXXoXXXXXoXXXXoX"],
+      ["XoXXXXoXXXXXoXXoXXXXXoXXXXoX"],
+      ["XOooXXooooooo  oooooooXXooOX"],
+      ["XXXoXXoXXoXXXXXXXXoXXoXXoXXX"],
+      ["XXXoXXoXXoXXXXXXXXoXXoXXoXXX"],
+      ["XooooooXXooooXXooooXXooooooX"],
+      ["XoXXXXXXXXXXoXXoXXXXXXXXXXoX"],
+      ["XoXXXXXXXXXXoXXoXXXXXXXXXXoX"],
+      ["XooooooooooooooooooooooooooX"],
+      ["XXXXXXXXXXXXXXXXXXXXXXXXXXXX"],
     ];
 
     this.maxFps = 120;
@@ -1171,16 +1171,16 @@ class GameCoordinator {
 
     this.movementKeys = {
       // WASD
-      87: 'up',
-      83: 'down',
-      65: 'left',
-      68: 'right',
+      87: "up",
+      83: "down",
+      65: "left",
+      68: "right",
 
       // Arrow Keys
-      38: 'up',
-      40: 'down',
-      37: 'left',
-      39: 'right',
+      38: "up",
+      40: "down",
+      37: "left",
+      39: "right",
     };
 
     this.fruitPoints = {
@@ -1195,23 +1195,17 @@ class GameCoordinator {
     };
 
     this.mazeArray.forEach((row, rowIndex) => {
-      this.mazeArray[rowIndex] = row[0].split('');
+      this.mazeArray[rowIndex] = row[0].split("");
     });
 
-    this.gameStartButton.addEventListener(
-      'click',
-      this.startButtonClick.bind(this),
-    );
-    this.pauseButton.addEventListener('click', this.handlePauseKey.bind(this));
-    this.soundButton.addEventListener(
-      'click',
-      this.soundButtonClick.bind(this),
-    );
+    this.gameStartButton.addEventListener("click", this.startButtonClick.bind(this));
+    this.pauseButton.addEventListener("click", this.handlePauseKey.bind(this));
+    this.soundButton.addEventListener("click", this.soundButtonClick.bind(this));
 
-    const head = document.getElementsByTagName('head')[0];
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'build/app.css';
+    const head = document.getElementsByTagName("head")[0];
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "build/app.css";
 
     link.onload = this.preloadAssets.bind(this);
 
@@ -1225,11 +1219,11 @@ class GameCoordinator {
   determineScale(scale) {
     const availableScreenHeight = Math.min(
       document.documentElement.clientHeight,
-      window.innerHeight || 0,
+      window.innerHeight || 0
     );
     const availableScreenWidth = Math.min(
       document.documentElement.clientWidth,
-      window.innerWidth || 0,
+      window.innerWidth || 0
     );
     const scaledTileSize = this.tileSize * scale;
 
@@ -1237,11 +1231,11 @@ class GameCoordinator {
     // maze for the UI. See app\style\graphics\spriteSheets\references\mazeGridSystemReference.png
     // for reference.
     const mazeTileHeight = this.mazeArray.length + 5;
-    const mazeTileWidth = this.mazeArray[0][0].split('').length;
+    const mazeTileWidth = this.mazeArray[0][0].split("").length;
 
     if (
-      scaledTileSize * mazeTileHeight < availableScreenHeight
-      && scaledTileSize * mazeTileWidth < availableScreenWidth
+      scaledTileSize * mazeTileHeight < availableScreenHeight &&
+      scaledTileSize * mazeTileWidth < availableScreenWidth
     ) {
       return this.determineScale(scale + 1);
     }
@@ -1253,13 +1247,13 @@ class GameCoordinator {
    * Reveals the game underneath the loading covers and starts gameplay
    */
   startButtonClick() {
-    this.leftCover.style.left = '-50%';
-    this.rightCover.style.right = '-50%';
+    this.leftCover.style.left = "-50%";
+    this.rightCover.style.right = "-50%";
     this.mainMenu.style.opacity = 0;
     this.gameStartButton.disabled = true;
 
     setTimeout(() => {
-      this.mainMenu.style.visibility = 'hidden';
+      this.mainMenu.style.visibility = "hidden";
     }, 1000);
 
     this.reset();
@@ -1276,7 +1270,7 @@ class GameCoordinator {
   soundButtonClick() {
     const newVolume = this.soundManager.masterVolume === 1 ? 0 : 1;
     this.soundManager.setMasterVolume(newVolume);
-    localStorage.setItem('volumePreference', newVolume);
+    localStorage.setItem("volumePreference", newVolume);
     this.setSoundButtonIcon(newVolume);
   }
 
@@ -1284,20 +1278,20 @@ class GameCoordinator {
    * Sets the icon for the sound button
    */
   setSoundButtonIcon(newVolume) {
-    this.soundButton.innerHTML = newVolume === 0 ? 'volume_off' : 'volume_up';
+    this.soundButton.innerHTML = newVolume === 0 ? "volume_off" : "volume_up";
   }
 
   /**
    * Displays an error message in the event assets are unable to download
    */
   displayErrorMessage() {
-    const loadingContainer = document.getElementById('loading-container');
-    const errorMessage = document.getElementById('error-message');
+    const loadingContainer = document.getElementById("loading-container");
+    const errorMessage = document.getElementById("error-message");
     loadingContainer.style.opacity = 0;
     setTimeout(() => {
       loadingContainer.remove();
       errorMessage.style.opacity = 1;
-      errorMessage.style.visibility = 'visible';
+      errorMessage.style.visibility = "visible";
     }, 1500);
   }
 
@@ -1307,11 +1301,11 @@ class GameCoordinator {
    */
   preloadAssets() {
     return new Promise((resolve) => {
-      const loadingContainer = document.getElementById('loading-container');
-      const loadingPacman = document.getElementById('loading-pacman');
-      const loadingDotMask = document.getElementById('loading-dot-mask');
+      const loadingContainer = document.getElementById("loading-container");
+      const loadingPacman = document.getElementById("loading-pacman");
+      const loadingDotMask = document.getElementById("loading-dot-mask");
 
-      const imgBase = 'app/style/graphics/spriteSheets/';
+      const imgBase = "app/style/graphics/spriteSheets/";
       const imgSources = [
         // Pacman
         `${imgBase}characters/pacman/arrow_down.svg`,
@@ -1400,10 +1394,10 @@ class GameCoordinator {
         `${imgBase}maze/maze_blue.svg`,
 
         // Misc
-        'app/style/graphics/extra_life.png',
+        "app/style/graphics/extra_life.png",
       ];
 
-      const audioBase = 'app/style/audio/';
+      const audioBase = "app/style/audio/";
       const audioSources = [
         `${audioBase}game_start.mp3`,
         `${audioBase}pause.mp3`,
@@ -1424,12 +1418,12 @@ class GameCoordinator {
       const totalSources = imgSources.length + audioSources.length;
       this.remainingSources = totalSources;
 
-      loadingPacman.style.left = '0';
-      loadingDotMask.style.width = '0';
+      loadingPacman.style.left = "0";
+      loadingDotMask.style.width = "0";
 
       Promise.all([
-        this.createElements(imgSources, 'img', totalSources, this),
-        this.createElements(audioSources, 'audio', totalSources, this),
+        this.createElements(imgSources, "img", totalSources, this),
+        this.createElements(audioSources, "audio", totalSources, this),
       ])
         .then(() => {
           loadingContainer.style.opacity = 0;
@@ -1438,7 +1432,7 @@ class GameCoordinator {
           setTimeout(() => {
             loadingContainer.remove();
             this.mainMenu.style.opacity = 1;
-            this.mainMenu.style.visibility = 'visible';
+            this.mainMenu.style.visibility = "visible";
           }, 1500);
         })
         .catch(this.displayErrorMessage);
@@ -1454,12 +1448,11 @@ class GameCoordinator {
    * @returns {Promise}
    */
   createElements(sources, type, totalSources, gameCoord) {
-    const loadingContainer = document.getElementById('loading-container');
-    const preloadDiv = document.getElementById('preload-div');
-    const loadingPacman = document.getElementById('loading-pacman');
-    const containerWidth = loadingContainer.scrollWidth
-      - loadingPacman.scrollWidth;
-    const loadingDotMask = document.getElementById('loading-dot-mask');
+    const loadingContainer = document.getElementById("loading-container");
+    const preloadDiv = document.getElementById("preload-div");
+    const loadingPacman = document.getElementById("loading-pacman");
+    const containerWidth = loadingContainer.scrollWidth - loadingPacman.scrollWidth;
+    const loadingDotMask = document.getElementById("loading-dot-mask");
 
     const gameCoordRef = gameCoord;
 
@@ -1467,7 +1460,7 @@ class GameCoordinator {
       let loadedSources = 0;
 
       sources.forEach((source) => {
-        const element = type === 'img' ? new Image() : new Audio();
+        const element = type === "img" ? new Image() : new Audio();
         preloadDiv.appendChild(element);
 
         const elementReady = () => {
@@ -1482,17 +1475,17 @@ class GameCoordinator {
           }
         };
 
-        if (type === 'img') {
+        if (type === "img") {
           element.onload = elementReady;
           element.onerror = reject;
         } else {
-          element.addEventListener('canplaythrough', elementReady);
+          element.addEventListener("canplaythrough", elementReady);
           element.onerror = reject;
         }
 
         element.src = source;
 
-        if (type === 'audio') {
+        if (type === "audio") {
           element.load();
         }
       });
@@ -1513,70 +1506,59 @@ class GameCoordinator {
     this.allowPacmanMovement = false;
     this.allowPause = false;
     this.cutscene = true;
-    this.highScore = localStorage.getItem('highScore');
+    this.highScore = localStorage.getItem("highScore");
 
     if (this.firstGame) {
       setInterval(() => {
         this.collisionDetectionLoop();
       }, 500);
 
-      this.pacman = new Pacman(
-        this.scaledTileSize,
-        this.mazeArray,
-        new CharacterUtil(),
-      );
+      this.pacman = new Pacman(this.scaledTileSize, this.mazeArray, new CharacterUtil());
       this.blinky = new Ghost(
         this.scaledTileSize,
         this.mazeArray,
         this.pacman,
-        'blinky',
+        "blinky",
         this.level,
-        new CharacterUtil(),
+        new CharacterUtil()
       );
       this.pinky = new Ghost(
         this.scaledTileSize,
         this.mazeArray,
         this.pacman,
-        'pinky',
+        "pinky",
         this.level,
-        new CharacterUtil(),
+        new CharacterUtil()
       );
       this.inky = new Ghost(
         this.scaledTileSize,
         this.mazeArray,
         this.pacman,
-        'inky',
+        "inky",
         this.level,
         new CharacterUtil(),
-        this.blinky,
+        this.blinky
       );
       this.clyde = new Ghost(
         this.scaledTileSize,
         this.mazeArray,
         this.pacman,
-        'clyde',
+        "clyde",
         this.level,
-        new CharacterUtil(),
+        new CharacterUtil()
       );
       this.fruit = new Pickup(
-        'fruit',
+        "fruit",
         this.scaledTileSize,
         13.5,
         17,
         this.pacman,
         this.mazeDiv,
-        100,
+        100
       );
     }
 
-    this.entityList = [
-      this.pacman,
-      this.blinky,
-      this.pinky,
-      this.inky,
-      this.clyde,
-      this.fruit,
-    ];
+    this.entityList = [this.pacman, this.blinky, this.pinky, this.inky, this.clyde, this.fruit];
 
     this.ghosts = [this.blinky, this.pinky, this.inky, this.clyde];
 
@@ -1593,7 +1575,7 @@ class GameCoordinator {
         ghost.reset(true);
       });
       this.pickups.forEach((pickup) => {
-        if (pickup.type !== 'fruit') {
+        if (pickup.type !== "fruit") {
           this.remainingDots += 1;
           pickup.reset();
           this.entityList.push(pickup);
@@ -1601,14 +1583,11 @@ class GameCoordinator {
       });
     }
 
-    this.pointsDisplay.innerHTML = '00';
-    this.highScoreDisplay.innerHTML = this.highScore || '00';
+    this.pointsDisplay.innerHTML = "00";
+    this.highScoreDisplay.innerHTML = this.highScore || "00";
     this.clearDisplay(this.fruitDisplay);
 
-    const volumePreference = parseInt(
-      localStorage.getItem('volumePreference') || 1,
-      10,
-    );
+    const volumePreference = parseInt(localStorage.getItem("volumePreference") || 1, 10);
     this.setSoundButtonIcon(volumePreference);
     this.soundManager.setMasterVolume(volumePreference);
   }
@@ -1635,13 +1614,13 @@ class GameCoordinator {
     this.mazeDiv.style.width = `${this.scaledTileSize * 28}px`;
     this.gameUi.style.width = `${this.scaledTileSize * 28}px`;
     this.bottomRow.style.minHeight = `${this.scaledTileSize * 2}px`;
-    this.dotContainer = document.getElementById('dot-container');
+    this.dotContainer = document.getElementById("dot-container");
 
     mazeArray.forEach((row, rowIndex) => {
       row.forEach((block, columnIndex) => {
-        if (block === 'o' || block === 'O') {
-          const type = block === 'o' ? 'pacdot' : 'powerPellet';
-          const points = block === 'o' ? 10 : 50;
+        if (block === "o" || block === "O") {
+          const type = block === "o" ? "pacdot" : "powerPellet";
+          const points = block === "o" ? 10 : 50;
           const dot = new Pickup(
             type,
             this.scaledTileSize,
@@ -1649,7 +1628,7 @@ class GameCoordinator {
             rowIndex,
             this.pacman,
             this.dotContainer,
-            points,
+            points
           );
 
           entityList.push(dot);
@@ -1692,7 +1671,7 @@ class GameCoordinator {
    */
   startGameplay(initialStart) {
     if (initialStart) {
-      this.soundManager.play('game_start');
+      this.soundManager.play("game_start");
     }
 
     this.scaredGhosts = [];
@@ -1705,7 +1684,7 @@ class GameCoordinator {
     const width = this.scaledTileSize * 6;
     const height = this.scaledTileSize * 2;
 
-    this.displayText({ left, top }, 'ready', duration, width, height);
+    this.displayText({ left, top }, "ready", duration, width, height);
     this.updateExtraLivesDisplay();
 
     new Timer(() => {
@@ -1722,7 +1701,7 @@ class GameCoordinator {
         ghostRef.moving = true;
       });
 
-      this.ghostCycle('scatter');
+      this.ghostCycle("scatter");
 
       this.idleGhosts = [this.pinky, this.inky, this.clyde];
       this.releaseGhost();
@@ -1746,8 +1725,8 @@ class GameCoordinator {
     this.clearDisplay(this.extraLivesDisplay);
 
     for (let i = 0; i < this.lives; i += 1) {
-      const extraLifePic = document.createElement('img');
-      extraLifePic.setAttribute('src', 'app/style/graphics/extra_life.svg');
+      const extraLifePic = document.createElement("img");
+      extraLifePic.setAttribute("src", "app/style/graphics/extra_life.svg");
       extraLifePic.style.height = `${this.scaledTileSize * 2}px`;
       this.extraLivesDisplay.appendChild(extraLifePic);
     }
@@ -1759,16 +1738,16 @@ class GameCoordinator {
    */
   updateFruitDisplay(rawImageSource) {
     const parsedSource = rawImageSource.slice(
-      rawImageSource.indexOf('(') + 1,
-      rawImageSource.indexOf(')'),
+      rawImageSource.indexOf("(") + 1,
+      rawImageSource.indexOf(")")
     );
 
     if (this.fruitDisplay.children.length === 7) {
       this.fruitDisplay.removeChild(this.fruitDisplay.firstChild);
     }
 
-    const fruitPic = document.createElement('img');
-    fruitPic.setAttribute('src', parsedSource);
+    const fruitPic = document.createElement("img");
+    fruitPic.setAttribute("src", parsedSource);
     fruitPic.style.height = `${this.scaledTileSize * 2}px`;
     this.fruitDisplay.appendChild(fruitPic);
   }
@@ -1778,8 +1757,8 @@ class GameCoordinator {
    * @param {('chase'|'scatter')} mode
    */
   ghostCycle(mode) {
-    const delay = mode === 'scatter' ? 7000 : 20000;
-    const nextMode = mode === 'scatter' ? 'chase' : 'scatter';
+    const delay = mode === "scatter" ? 7000 : 20000;
+    const nextMode = mode === "scatter" ? "chase" : "scatter";
 
     this.ghostCycleTimer = new Timer(() => {
       this.ghosts.forEach((ghost) => {
@@ -1808,25 +1787,23 @@ class GameCoordinator {
    * Register listeners for various game sequences
    */
   registerEventListeners() {
-    window.addEventListener('keydown', this.handleKeyDown.bind(this));
-    window.addEventListener('awardPoints', this.awardPoints.bind(this));
-    window.addEventListener('deathSequence', this.deathSequence.bind(this));
-    window.addEventListener('dotEaten', this.dotEaten.bind(this));
-    window.addEventListener('powerUp', this.powerUp.bind(this));
-    window.addEventListener('eatGhost', this.eatGhost.bind(this));
-    window.addEventListener('restoreGhost', this.restoreGhost.bind(this));
-    window.addEventListener('addTimer', this.addTimer.bind(this));
-    window.addEventListener('removeTimer', this.removeTimer.bind(this));
-    window.addEventListener('releaseGhost', this.releaseGhost.bind(this));
+    window.addEventListener("keydown", this.handleKeyDown.bind(this));
+    window.addEventListener("awardPoints", this.awardPoints.bind(this));
+    window.addEventListener("deathSequence", this.deathSequence.bind(this));
+    window.addEventListener("dotEaten", this.dotEaten.bind(this));
+    window.addEventListener("powerUp", this.powerUp.bind(this));
+    window.addEventListener("eatGhost", this.eatGhost.bind(this));
+    window.addEventListener("restoreGhost", this.restoreGhost.bind(this));
+    window.addEventListener("addTimer", this.addTimer.bind(this));
+    window.addEventListener("removeTimer", this.removeTimer.bind(this));
+    window.addEventListener("releaseGhost", this.releaseGhost.bind(this));
 
-    const directions = ['up', 'down', 'left', 'right'];
+    const directions = ["up", "down", "left", "right"];
 
     directions.forEach((direction) => {
-      document
-        .getElementById(`button-${direction}`)
-        .addEventListener('touchstart', () => {
-          this.changeDirection(direction);
-        });
+      document.getElementById(`button-${direction}`).addEventListener("touchstart", () => {
+        this.changeDirection(direction);
+      });
     });
   }
 
@@ -1870,24 +1847,24 @@ class GameCoordinator {
       }, 500);
 
       this.gameEngine.changePausedState(this.gameEngine.running);
-      this.soundManager.play('pause');
+      this.soundManager.play("pause");
 
       if (this.gameEngine.started) {
         this.soundManager.resumeAmbience();
-        this.gameUi.style.filter = 'unset';
-        this.movementButtons.style.filter = 'unset';
-        this.pausedText.style.visibility = 'hidden';
-        this.pauseButton.innerHTML = 'pause';
+        this.gameUi.style.filter = "unset";
+        this.movementButtons.style.filter = "unset";
+        this.pausedText.style.visibility = "hidden";
+        this.pauseButton.innerHTML = "pause";
         this.activeTimers.forEach((timer) => {
           timer.resume();
         });
       } else {
         this.soundManager.stopAmbience();
-        this.soundManager.setAmbience('pause_beat', true);
-        this.gameUi.style.filter = 'blur(5px)';
-        this.movementButtons.style.filter = 'blur(5px)';
-        this.pausedText.style.visibility = 'visible';
-        this.pauseButton.innerHTML = 'play_arrow';
+        this.soundManager.setAmbience("pause_beat", true);
+        this.gameUi.style.filter = "blur(5px)";
+        this.movementButtons.style.filter = "blur(5px)";
+        this.pausedText.style.visibility = "visible";
+        this.pauseButton.innerHTML = "play_arrow";
         this.activeTimers.forEach((timer) => {
           timer.pause();
         });
@@ -1905,31 +1882,25 @@ class GameCoordinator {
     if (this.points > (this.highScore || 0)) {
       this.highScore = this.points;
       this.highScoreDisplay.innerText = this.points;
-      localStorage.setItem('highScore', this.highScore);
+      localStorage.setItem("highScore", this.highScore);
     }
 
     if (this.points >= 10000 && !this.extraLifeGiven) {
       this.extraLifeGiven = true;
-      this.soundManager.play('extra_life');
+      this.soundManager.play("extra_life");
       this.lives += 1;
       this.updateExtraLivesDisplay();
     }
 
-    if (e.detail.type === 'fruit') {
-      const left = e.detail.points >= 1000
-        ? this.scaledTileSize * 12.5
-        : this.scaledTileSize * 13;
+    if (e.detail.type === "fruit") {
+      const left = e.detail.points >= 1000 ? this.scaledTileSize * 12.5 : this.scaledTileSize * 13;
       const top = this.scaledTileSize * 16.5;
-      const width = e.detail.points >= 1000
-        ? this.scaledTileSize * 3
-        : this.scaledTileSize * 2;
+      const width = e.detail.points >= 1000 ? this.scaledTileSize * 3 : this.scaledTileSize * 2;
       const height = this.scaledTileSize * 2;
 
       this.displayText({ left, top }, e.detail.points, 2000, width, height);
-      this.soundManager.play('fruit');
-      this.updateFruitDisplay(
-        this.fruit.determineImage('fruit', e.detail.points),
-      );
+      this.soundManager.play("fruit");
+      this.updateFruitDisplay(this.fruit.determineImage("fruit", e.detail.points));
     }
   }
 
@@ -1960,16 +1931,16 @@ class GameCoordinator {
         ghostRef.display = false;
       });
       this.pacman.prepDeathAnimation();
-      this.soundManager.play('death');
+      this.soundManager.play("death");
 
       if (this.lives > 0) {
         this.lives -= 1;
 
         new Timer(() => {
-          this.mazeCover.style.visibility = 'visible';
+          this.mazeCover.style.visibility = "visible";
           new Timer(() => {
             this.allowKeyPresses = true;
-            this.mazeCover.style.visibility = 'hidden';
+            this.mazeCover.style.visibility = "hidden";
             this.pacman.reset();
             this.ghosts.forEach((ghost) => {
               ghost.reset();
@@ -1989,7 +1960,7 @@ class GameCoordinator {
    * Displays GAME OVER text and displays the menu so players can play again
    */
   gameOver() {
-    localStorage.setItem('highScore', this.highScore);
+    localStorage.setItem("highScore", this.highScore);
 
     new Timer(() => {
       this.displayText(
@@ -1997,21 +1968,21 @@ class GameCoordinator {
           left: this.scaledTileSize * 9,
           top: this.scaledTileSize * 16.5,
         },
-        'game_over',
+        "game_over",
         4000,
         this.scaledTileSize * 10,
-        this.scaledTileSize * 2,
+        this.scaledTileSize * 2
       );
       this.fruit.hideFruit();
 
       new Timer(() => {
-        this.leftCover.style.left = '0';
-        this.rightCover.style.right = '0';
+        this.leftCover.style.left = "0";
+        this.rightCover.style.right = "0";
 
         setTimeout(() => {
           this.mainMenu.style.opacity = 1;
           this.gameStartButton.disabled = false;
-          this.mainMenu.style.visibility = 'visible';
+          this.mainMenu.style.visibility = "visible";
         }, 1000);
       }, 2500);
     }, 2250);
@@ -2099,7 +2070,7 @@ class GameCoordinator {
     this.removeTimer({ detail: { timer: this.endIdleTimer } });
     this.removeTimer({ detail: { timer: this.ghostFlashTimer } });
 
-    const imgBase = 'app/style//graphics/spriteSheets/maze/';
+    const imgBase = "app/style//graphics/spriteSheets/maze/";
 
     new Timer(() => {
       this.ghosts.forEach((ghost) => {
@@ -2119,9 +2090,9 @@ class GameCoordinator {
               new Timer(() => {
                 this.mazeImg.src = `${imgBase}maze_blue.svg`;
                 new Timer(() => {
-                  this.mazeCover.style.visibility = 'visible';
+                  this.mazeCover.style.visibility = "visible";
                   new Timer(() => {
-                    this.mazeCover.style.visibility = 'hidden';
+                    this.mazeCover.style.visibility = "hidden";
                     this.level += 1;
                     this.allowKeyPresses = true;
                     this.entityList.forEach((entity) => {
@@ -2133,10 +2104,7 @@ class GameCoordinator {
                       if (entityRef instanceof Ghost) {
                         entityRef.resetDefaultSpeed();
                       }
-                      if (
-                        entityRef instanceof Pickup
-                        && entityRef.type !== 'fruit'
-                      ) {
+                      if (entityRef instanceof Pickup && entityRef.type !== "fruit") {
                         this.remainingDots += 1;
                       }
                     });
@@ -2181,7 +2149,7 @@ class GameCoordinator {
    */
   powerUp() {
     if (this.remainingDots !== 0) {
-      this.soundManager.setAmbience('power_up');
+      this.soundManager.setAmbience("power_up");
     }
 
     this.removeTimer({ detail: { timer: this.ghostFlashTimer } });
@@ -2190,7 +2158,7 @@ class GameCoordinator {
     this.scaredGhosts = [];
 
     this.ghosts.forEach((ghost) => {
-      if (ghost.mode !== 'eyes') {
+      if (ghost.mode !== "eyes") {
         this.scaredGhosts.push(ghost);
       }
     });
@@ -2209,7 +2177,7 @@ class GameCoordinator {
    * Determines the quantity of points to give based on the current combo
    */
   determineComboPoints() {
-    return 100 * (2 ** this.ghostCombo);
+    return 100 * 2 ** this.ghostCombo;
   }
 
   /**
@@ -2223,21 +2191,19 @@ class GameCoordinator {
     this.pauseTimer({ detail: { timer: this.ghostFlashTimer } });
     this.pauseTimer({ detail: { timer: this.ghostCycleTimer } });
     this.pauseTimer({ detail: { timer: this.fruitTimer } });
-    this.soundManager.play('eat_ghost');
+    this.soundManager.play("eat_ghost");
 
-    this.scaredGhosts = this.scaredGhosts.filter(
-      ghost => ghost.name !== e.detail.ghost.name,
-    );
+    this.scaredGhosts = this.scaredGhosts.filter((ghost) => ghost.name !== e.detail.ghost.name);
     this.eyeGhosts += 1;
 
     this.ghostCombo += 1;
     const comboPoints = this.determineComboPoints();
     window.dispatchEvent(
-      new CustomEvent('awardPoints', {
+      new CustomEvent("awardPoints", {
         detail: {
           points: comboPoints,
         },
-      }),
+      })
     );
     this.displayText(position, comboPoints, pauseDuration, measurement);
 
@@ -2255,7 +2221,7 @@ class GameCoordinator {
     });
 
     new Timer(() => {
-      this.soundManager.setAmbience('eyes');
+      this.soundManager.setAmbience("eyes");
 
       this.resumeTimer({ detail: { timer: this.ghostFlashTimer } });
       this.resumeTimer({ detail: { timer: this.ghostCycleTimer } });
@@ -2281,9 +2247,8 @@ class GameCoordinator {
     this.eyeGhosts -= 1;
 
     if (this.eyeGhosts === 0) {
-      const sound = this.scaredGhosts.length > 0
-        ? 'power_up'
-        : this.determineSiren(this.remainingDots);
+      const sound =
+        this.scaredGhosts.length > 0 ? "power_up" : this.determineSiren(this.remainingDots);
       this.soundManager.setAmbience(sound);
     }
   }
@@ -2297,12 +2262,11 @@ class GameCoordinator {
    * @param {Number} height - Image height in pixels
    */
   displayText(position, amount, duration, width, height) {
-    const pointsDiv = document.createElement('div');
+    const pointsDiv = document.createElement("div");
 
-    pointsDiv.style.position = 'absolute';
+    pointsDiv.style.position = "absolute";
     pointsDiv.style.backgroundSize = `${width}px`;
-    pointsDiv.style.backgroundImage = 'url(app/style/graphics/'
-        + `spriteSheets/text/${amount}.svg`;
+    pointsDiv.style.backgroundImage = "url(app/style/graphics/" + `spriteSheets/text/${amount}.svg`;
     pointsDiv.style.width = `${width}px`;
     pointsDiv.style.height = `${height || width}px`;
     pointsDiv.style.top = `${position.top}px`;
@@ -2361,7 +2325,7 @@ class GameCoordinator {
     if (this.timerExists(e)) {
       window.clearTimeout(e.detail.timer.timerId);
       this.activeTimers = this.activeTimers.filter(
-        timer => timer.timerId !== e.detail.timer.timerId,
+        (timer) => timer.timerId !== e.detail.timer.timerId
       );
     }
   }
