@@ -182,15 +182,6 @@ class Ghost {
    * @param {('chase'|'scatter'|'scared'|'eyes')} mode - The character's behavior mode
    */
   setSpriteSheet(name, direction, mode) {
-    // Ghosts have uncertainty by default unless exposed to light (invisible)
-    if (!this.quantumVisible) {
-      // TODO: replace backgorundImage with null -> Use eyes spritesheet for testing
-      this.animationTarget.style.backgroundImage =
-        "url(app/style/graphics/" + `spriteSheets/characters/ghosts/eyes_${direction}.svg)`;
-      // this.animationTarget.style.backgroundImage = null; <--- uncomment this later
-      return;
-    }
-
     let emotion = "";
     if (this.defaultSpeed !== this.slowSpeed) {
       emotion = this.defaultSpeed === this.mediumSpeed ? "_annoyed" : "_angry";
@@ -203,11 +194,15 @@ class Ghost {
     } else if (mode === "eyes") {
       this.animationTarget.style.backgroundImage =
         "url(app/style/graphics/" + `spriteSheets/characters/ghosts/eyes_${direction}.svg)`;
-    } else {
+    } else if (this.quantumVisible) {
       this.animationTarget.style.backgroundImage =
         "url(app/style/graphics/" +
         `spriteSheets/characters/ghosts/${name}/${name}_${direction}` +
         `${emotion}.svg)`;
+    } else {
+      this.animationTarget.style.backgroundImage =
+        "url(app/style/graphics/" + `spriteSheets/characters/ghosts/eyes_${direction}.svg)`;
+      // this.animationTarget.style.backgroundImage = null; <--- uncomment this later
     }
   }
 
