@@ -12,16 +12,6 @@ class GameEngine {
     this.frameId = 0;
     this.running = false;
     this.started = false;
-    this.pelletCounter = 0; //pellet counter
-    // Listen for pellet consumption events
-    window.addEventListener("dotEaten", () => {
-      this.pelletCounter++;
-      // Check if the counter is greater than or equal to 10
-      if (this.pelletCounter == 10) {
-        window.dispatchEvent(new Event("activateFlash"));
-        this.pelletCounter = 0; //reset the pellet counter
-      }
-    });
   }
 
   /**

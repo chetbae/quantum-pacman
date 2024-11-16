@@ -12,8 +12,9 @@ class Pacman {
       "url(app/style/graphics/spriteSheets/characters/pacman/flash.svg)";
     this.flashElement.style.position = "absolute";
 
-    //Flash ability, triggered by 10 pellets
+    // Flash ability, triggered by 10 dots
     this.flashActive = false;
+    this.flashRadius = 10; // TO CHANGE
 
     // Add a listener for 'activateFlash'
     window.addEventListener("activateFlash", () => {
@@ -22,6 +23,7 @@ class Pacman {
 
     this.reset();
   }
+  // Adjust flash radius at setStyleMeasurements()
 
   /**
    * Activate flash function
@@ -42,7 +44,7 @@ class Pacman {
     setTimeout(() => {
       this.flashActive = false;
       this.flashElement.style.visibility = "hidden";
-    }, 500);
+    }, 750);
   }
 
   /**

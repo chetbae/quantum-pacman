@@ -100,6 +100,38 @@ class GameCoordinator {
     link.onload = this.preloadAssets.bind(this);
 
     head.appendChild(link);
+
+    this.dotCounter = 0;
+
+    // Listen for pellet consumption events
+    window.addEventListener("dotEaten", () => {
+
+      this.dotCounter++;
+
+      // Check if the counter is greater than or equal to 10
+      if (this.dotCounter == 10) {
+        window.dispatchEvent(new Event("activateFlash"));
+        this.dotCounter = 0; 
+
+        const ghosts = findGhostsExposed()
+
+        ghosts.forEach(ghost => {
+          ghost.expose(750)
+        })
+      }
+    });
+
+  }
+
+  findGhostsExposed() {
+    return this.ghosts.filter(ghost => {
+      const distance = Math.sqrt(
+        (ghost. position.x - this.pacman.position.x) ** 2 +
+        (ghost.position.y - this.pacman.position.y) ** 2
+      );
+
+      return distance < this.pacman.flashRadius
+    });
   }
 
   /**
