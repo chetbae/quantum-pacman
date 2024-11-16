@@ -5,9 +5,33 @@ class Pacman {
     this.characterUtil = characterUtil;
     this.animationTarget = document.getElementById('pacman');
     this.pacmanArrow = document.getElementById('pacman-arrow');
+    this.flashActive = false; //Flash ability, triggered by 5 pellets
+
+    //Add a listner for 'activateFlash'
+    window.addEventListener('activateFlash', () => {
+      this.activateFlash();  // 'this' refers to the Pacman instance
+    });
 
     this.reset();
   }
+
+  //Activate flash function
+  activateFlash() {
+    this.flashActive = true;
+    console.log('Flash Activated');
+    setTimeout(() => {
+      this.flashActive = false;
+    }, 500);  // Flash duration, 500ms
+  }
+
+  /*
+  // Render the flash effect
+  renderFlashEffect() {
+    if (this.flashActive) {
+      
+    }
+  }
+*/
 
   /**
    * Rests the character to its default state
@@ -88,7 +112,7 @@ class Pacman {
    */
   calculateVelocityPerMs(scaledTileSize) {
     // In the original game, Pacman moved at 11 tiles per second.
-    const velocityPerSecond = scaledTileSize * 11;
+    const velocityPerSecond = scaledTileSize * 6;
     return velocityPerSecond / 1000;
   }
 

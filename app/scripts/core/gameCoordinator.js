@@ -1036,6 +1036,7 @@ class GameCoordinator {
 
   /**
    * Upon eating a power pellet, sets the ghosts to 'scared' mode
+   * ADD LARGE FLASH
    */
   powerUp() {
     if (this.remainingDots !== 0) {
