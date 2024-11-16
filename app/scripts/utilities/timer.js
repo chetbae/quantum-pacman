@@ -32,19 +32,23 @@ class Timer {
       this.start = new Date();
       this.timerId = window.setTimeout(() => {
         this.callback();
-        window.dispatchEvent(new CustomEvent('removeTimer', {
-          detail: {
-            timer: this,
-          },
-        }));
+        window.dispatchEvent(
+          new CustomEvent("removeTimer", {
+            detail: {
+              timer: this,
+            },
+          })
+        );
       }, this.remaining);
 
       if (!this.oldTimerId) {
-        window.dispatchEvent(new CustomEvent('addTimer', {
-          detail: {
-            timer: this,
-          },
-        }));
+        window.dispatchEvent(
+          new CustomEvent("addTimer", {
+            detail: {
+              timer: this,
+            },
+          })
+        );
       }
     }
   }

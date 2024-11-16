@@ -1,7 +1,7 @@
 class SoundManager {
   constructor() {
-    this.baseUrl = 'app/style/audio/';
-    this.fileFormat = 'mp3';
+    this.baseUrl = "app/style/audio/";
+    this.fileFormat = "mp3";
     this.masterVolume = 1;
     this.paused = false;
     this.cutscene = true;
@@ -59,11 +59,9 @@ class SoundManager {
 
     if (!this.dotPlayer) {
       this.queuedDotSound = false;
-      this.dotSound = (this.dotSound === 1) ? 2 : 1;
+      this.dotSound = this.dotSound === 1 ? 2 : 1;
 
-      this.dotPlayer = new Audio(
-        `${this.baseUrl}dot_${this.dotSound}.${this.fileFormat}`,
-      );
+      this.dotPlayer = new Audio(`${this.baseUrl}dot_${this.dotSound}.${this.fileFormat}`);
       this.dotPlayer.onended = this.dotSoundEnded.bind(this);
       this.dotPlayer.volume = this.masterVolume;
       this.dotPlayer.play();
@@ -100,9 +98,7 @@ class SoundManager {
 
       if (this.masterVolume !== 0) {
         this.fetchingAmbience = true;
-        const response = await fetch(
-          `${this.baseUrl}${sound}.${this.fileFormat}`,
-        );
+        const response = await fetch(`${this.baseUrl}${sound}.${this.fileFormat}`);
         const arrayBuffer = await response.arrayBuffer();
         const audioBuffer = await this.ambience.decodeAudioData(arrayBuffer);
 
@@ -125,7 +121,7 @@ class SoundManager {
       // Resetting the ambience since an AudioBufferSourceNode can only
       // have 'start()' called once
       if (paused) {
-        this.setAmbience('pause_beat', true);
+        this.setAmbience("pause_beat", true);
       } else {
         this.setAmbience(this.currentAmbience);
       }
