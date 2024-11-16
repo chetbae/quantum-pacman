@@ -5,33 +5,45 @@ class Pacman {
     this.characterUtil = characterUtil;
     this.animationTarget = document.getElementById("pacman");
     this.pacmanArrow = document.getElementById("pacman-arrow");
-    this.flashActive = false; //Flash ability, triggered by 5 pellets
 
-    //Add a listner for 'activateFlash'
+    this.flashElement = document.getElementById("pacman-flash");
+    this.flashElement.style.visibility = "hidden";
+    this.flashElement.style.backgroundImage =
+      "url(app/style/graphics/spriteSheets/characters/pacman/flash.svg)";
+    this.flashElement.style.position = "absolute";
+
+    //Flash ability, triggered by 10 pellets
+    this.flashActive = false;
+
+    // Add a listener for 'activateFlash'
     window.addEventListener("activateFlash", () => {
-      this.activateFlash(); // 'this' refers to the Pacman instance
+      this.activateFlash();
     });
 
     this.reset();
   }
 
-  //Activate flash function
+  /**
+   * Activate flash function
+   */
   activateFlash() {
     this.flashActive = true;
-    console.log("Flash Activated");
+    this.flashElement.style.visibility = "visible";
+
+    // Center the flash element on Pacman's centerconst flashSize = this.flashElement.offsetWidth;
+    const flashSize = this.flashElement.offsetWidth;
+    const offset = flashSize / 2;
+    const verticalAdjustment = this.measurement / 3; // Adjust this value to move flash up/down
+    this.flashElement.style.top = `${
+      this.position.top + this.measurement / 2 - offset - verticalAdjustment
+    }px`;
+    this.flashElement.style.left = `${this.position.left + this.measurement / 2 - offset}px`;
+
     setTimeout(() => {
       this.flashActive = false;
-    }, 500); // Flash duration, 500ms
+      this.flashElement.style.visibility = "hidden";
+    }, 500);
   }
-
-  /*
-  // Render the flash effect
-  renderFlashEffect() {
-    if (this.flashActive) {
-      
-    }
-  }
-*/
 
   /**
    * Rests the character to its default state
@@ -87,6 +99,12 @@ class Pacman {
     this.pacmanArrow.style.height = `${this.measurement * 2}px`;
     this.pacmanArrow.style.width = `${this.measurement * 2}px`;
     this.pacmanArrow.style.backgroundSize = `${this.measurement * 2}px`;
+
+    // Add flash element measurements (3x larger than Pacman)
+    const flashSize = this.measurement * 10;
+    this.flashElement.style.height = `${flashSize}px`;
+    this.flashElement.style.width = `${flashSize}px`;
+    this.flashElement.style.backgroundSize = "100%";
   }
 
   /**
@@ -258,8 +276,21 @@ class Pacman {
       this.oldPosition,
       this.position
     );
+
+    // Update Pacman position
     this.animationTarget.style.top = `${newTop}px`;
     this.animationTarget.style.left = `${newLeft}px`;
+
+    // Update flash position if active
+    if (this.flashActive) {
+      const flashSize = this.flashElement.offsetWidth;
+      const offset = flashSize / 2;
+      const verticalAdjustment = this.measurement / 3; // Same adjustment as in activateFlash
+      this.flashElement.style.top = `${
+        newTop + this.measurement / 2 - offset - verticalAdjustment
+      }px`;
+      this.flashElement.style.left = `${newLeft + this.measurement / 2 - offset}px`;
+    }
 
     this.animationTarget.style.visibility = this.display
       ? this.characterUtil.checkForStutter(this.position, this.oldPosition)
