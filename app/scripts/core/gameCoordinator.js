@@ -105,29 +105,28 @@ class GameCoordinator {
 
     // Listen for pellet consumption events
     window.addEventListener("dotEaten", () => {
-
       this.dotCounter++;
 
       // Check if the counter is greater than or equal to 10
       if (this.dotCounter == 10) {
         window.dispatchEvent(new Event("activateFlash"));
-        this.dotCounter = 0; 
+        this.dotCounter = 0;
 
-        this.findGhostsExposed()
-          .forEach(ghost => {
-            ghost.expose(750)
-          })
+        this.findGhostsExposed().forEach((ghost) => {
+          ghost.expose(750);
+          ghost.teleport(13.5, 10);
+        });
       }
     });
   }
 
   findGhostsExposed() {
-    return this.ghosts.filter(ghost => {
+    return this.ghosts.filter((ghost) => {
       const distance = Math.sqrt(
         (ghost.position.left - this.pacman.position.left) ** 2 +
-        (ghost.position.top - this.pacman.position.top) ** 2
+          (ghost.position.top - this.pacman.position.top) ** 2
       );
-      return distance < this.pacman.flashRadius
+      return distance < this.pacman.flashRadius;
     });
   }
 
