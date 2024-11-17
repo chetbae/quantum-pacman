@@ -1,3 +1,81 @@
+/**
+ * @author Cam
+ * @param {*} maze matrix
+ * @returns invalid coordinates
+ */
+function getInvalidCoordinates(maze) {
+  const rows = maze.length;
+  const columns = maze[0].length;
+
+  // Ghost spawn
+  const enclosedBox = {
+    top: 10, // Start of the box in row (inclusive)
+    bottom: 19, // End of the box in row (inclusive)
+    left: 8, // Start of the box in column (inclusive)
+    right: 20, // End of the box in column (inclusive)
+  };
+
+  function isInEnclosedBox(row, col) {
+    return (
+      row >= enclosedBox.top &&
+      row <= enclosedBox.bottom &&
+      col >= enclosedBox.left &&
+      col <= enclosedBox.right
+    );
+  }
+
+  const invalidSet = new Set();
+
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < columns; j++) {
+      if (maze[i][j] === "X" || isInEnclosedBox(i, j)) {
+        invalidSet.add(`${i},${j}`);
+      }
+    }
+  }
+
+  return invalidSet;
+}
+
+// Weighted probability of a ghost teleporting in a particular row or column
+const rowsFreq = [
+  1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 11,
+  11, 11, 11, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 16,
+  16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19,
+  19, 19, 20, 20, 20, 20, 20, 21, 21, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23,
+  23, 24, 24, 25, 25, 25, 26, 26, 26, 26, 26, 26, 26, 27, 27, 28, 28, 29,
+];
+const colsFreq = [
+  1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 11,
+  11, 11, 11, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 16,
+  16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19,
+  19, 19, 20, 20, 20, 20, 20, 21, 21, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23,
+  23, 24, 24, 25, 25, 25, 26, 26, 26, 26, 26, 26, 26, 27, 27,
+];
+
+/**
+ * @author Cam
+ * @param {*} rowsFreq
+ * @param {*} colsFreq
+ * @param {*} invalidSet
+ * @returns valid coordinate {row, col}
+ */
+function getRandomValidCoordinate(rowsFreq, colsFreq, invalidSet) {
+  let validCoordinateFound = false;
+  let randomRow, randomCol;
+
+  while (!validCoordinateFound) {
+    randomRow = rowsFreq[Math.floor(Math.random() * rowsFreq.length)];
+    randomCol = colsFreq[Math.floor(Math.random() * colsFreq.length)];
+
+    if (!invalidSet.has(`${randomRow},${randomCol}`)) {
+      validCoordinateFound = true;
+    }
+  }
+
+  return { row: randomRow, col: randomCol };
+}
+
 class GameCoordinator {
   constructor() {
     this.gameUi = document.getElementById("game-ui");
@@ -101,22 +179,78 @@ class GameCoordinator {
 
     head.appendChild(link);
 
+    this.invalidSet = getInvalidCoordinates(this.mazeArray);
+
+    this.flashMs = 1000;
+    this.mazeFlash = document.getElementById("maze-flash");
+
     this.dotCounter = 0;
 
+    // Pinky, Inky, and Clyde have not left the Ghost House
+    this.pinkyLeft = false;
+    this.inkyLeft = false;
+    this.clydeLeft = false;
+
+    // Every time a ghost leaves the House, update statuses
+    let ghostCounter = 1;
+    window.addEventListener("releaseGhost", () => {
+      switch (ghostCounter) {
+        case 1:
+          this.pinkyLeft = true;
+          ghostCounter += 1;
+          break;
+        case 2:
+          this.inkyLeft = true;
+          ghostCounter += 1;
+          break;
+        case 3:
+          this.clydeLeft = true;
+          ghostCounter += 1;
+          break;
+      }
+    });
     // Listen for pellet consumption events
     window.addEventListener("dotEaten", () => {
       this.dotCounter++;
 
-      // Check if the counter is greater than or equal to 10
-      if (this.dotCounter === 10) {
-        // Don't flash if still in big flash cooldown
+      if (this.dotCounter == 10) {
+        // Don't flash or teleport if still in big flash cooldown
         if (this.ghosts.some((ghost) => ghost.mode == "scared")) return;
 
         window.dispatchEvent(new Event("activateFlash"));
         this.dotCounter = 0;
 
         this.findGhostsWithinRadius().forEach((ghost) => {
-          ghost.expose(750);
+          // Teleport the ghost to a certain location
+          const newLocation = getRandomValidCoordinate(rowsFreq, colsFreq, this.invalidSet);
+
+          // Checks if each ghost has permission to be teleported
+          switch (ghost.name) {
+            case "blinky":
+              if (ghost.idleMode != "idle") {
+                ghost.teleport(newLocation.col, newLocation.row);
+                ghost.expose(this.flashMs);
+              }
+              break;
+            case "pinky":
+              if (ghost.idleMode != "idle" && this.pinkyLeft) {
+                ghost.teleport(newLocation.col, newLocation.row);
+                ghost.expose(this.flashMs);
+              }
+              break;
+            case "inky":
+              if (ghost.idleMode != "idle" && this.inkyLeft) {
+                ghost.teleport(newLocation.col, newLocation.row);
+                ghost.expose(this.flashMs);
+              }
+              break;
+            case "clyde":
+              if (ghost.idleMode != "idle" && this.clydeLeft) {
+                ghost.teleport(newLocation.col, newLocation.row);
+                ghost.expose(this.flashMs);
+              }
+              break;
+          }
         });
       }
     });
@@ -129,8 +263,6 @@ class GameCoordinator {
     );
 
     return this.ghosts.filter((ghost) => {
-      if (["scared"]) return false;
-
       const ghostGridPosition = ghost.characterUtil.determineGridPosition(
         ghost.position,
         this.scaledTileSize
@@ -145,7 +277,7 @@ class GameCoordinator {
 
       const shouldExpose = distance < this.pacman.flashRadius;
 
-      if (shouldExpose) console.log(ghost.name, "is within pacman's radius! d =", distance);
+      if (shouldExpose) console.log(ghost.name + "'s wave function has collapsed!");
 
       return shouldExpose;
     });
@@ -452,7 +584,12 @@ class GameCoordinator {
         this.collisionDetectionLoop();
       }, 500);
 
-      this.pacman = new Pacman(this.scaledTileSize, this.mazeArray, new CharacterUtil());
+      this.pacman = new Pacman(
+        this.scaledTileSize,
+        this.mazeArray,
+        new CharacterUtil(),
+        this.flashMs
+      );
       this.blinky = new Ghost(
         this.scaledTileSize,
         this.mazeArray,
@@ -1084,13 +1221,27 @@ class GameCoordinator {
   }
 
   /**
-   * Upon eating a power pellet, sets the ghosts to 'scared' mode
-   * ADD LARGE FLASH
+   * Upon eating a power pellet, sets the ghosts to 'scared' mode and triggers the maze flash
    */
   powerUp() {
     if (this.remainingDots !== 0) {
       this.soundManager.setAmbience("power_up");
     }
+
+    // Staged flash sequence
+    this.mazeFlash.style.transition = "none";
+    this.mazeFlash.style.opacity = "0.6";
+
+    setTimeout(() => {
+      this.mazeFlash.style.transition = "opacity 1s ease-out";
+      this.mazeFlash.style.opacity = "0.4";
+      setTimeout(() => {
+        this.mazeFlash.style.opacity = "0.2";
+        setTimeout(() => {
+          this.mazeFlash.style.opacity = "0";
+        }, 500);
+      }, 500);
+    }, 500);
 
     this.removeTimer({ detail: { timer: this.ghostFlashTimer } });
 

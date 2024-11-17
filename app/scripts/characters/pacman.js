@@ -1,5 +1,5 @@
 class Pacman {
-  constructor(scaledTileSize, mazeArray, characterUtil) {
+  constructor(scaledTileSize, mazeArray, characterUtil, flashMs) {
     this.scaledTileSize = scaledTileSize;
     this.mazeArray = mazeArray;
     this.characterUtil = characterUtil;
@@ -17,6 +17,7 @@ class Pacman {
 
     // Flash Radius in Grid Position
     this.flashRadius = 8;
+    this.flashMs = flashMs;
 
     // Add a listener for 'activateFlash'
     window.addEventListener("activateFlash", () => {
@@ -46,7 +47,7 @@ class Pacman {
     setTimeout(() => {
       this.flashActive = false;
       this.flashElement.style.visibility = "hidden";
-    }, 750);
+    }, this.flashMs);
   }
 
   /**
