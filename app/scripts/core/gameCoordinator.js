@@ -113,23 +113,20 @@ class GameCoordinator {
         window.dispatchEvent(new Event("activateFlash"));
         this.dotCounter = 0; 
 
-        const ghosts = findGhostsExposed()
-
-        ghosts.forEach(ghost => {
-          ghost.expose(750)
-        })
+        this.findGhostsExposed()
+          .forEach(ghost => {
+            ghost.expose(750)
+          })
       }
     });
-
   }
 
   findGhostsExposed() {
     return this.ghosts.filter(ghost => {
       const distance = Math.sqrt(
-        (ghost. position.x - this.pacman.position.x) ** 2 +
-        (ghost.position.y - this.pacman.position.y) ** 2
+        (ghost.position.left - this.pacman.position.left) ** 2 +
+        (ghost.position.top - this.pacman.position.top) ** 2
       );
-
       return distance < this.pacman.flashRadius
     });
   }
