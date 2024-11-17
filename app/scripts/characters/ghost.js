@@ -240,9 +240,7 @@ class Ghost {
         `spriteSheets/characters/ghosts/${name}/${name}_${direction}` +
         `${emotion}.svg)`;
     } else {
-      this.animationTarget.style.backgroundImage =
-        "url(app/style/graphics/" + `spriteSheets/characters/ghosts/eyes_${direction}.svg)`;
-      // this.animationTarget.style.backgroundImage = null; //<--- uncomment this later
+      this.animationTarget.style.backgroundImage = null;
     }
   }
 
@@ -808,6 +806,9 @@ class Ghost {
         );
         this.mode = "eyes";
       } else {
+        this.quantumVisible = true;
+        this.setSpriteSheet(this.name, this.direction, this.mode);
+
         window.dispatchEvent(new Event("deathSequence"));
       }
     }
