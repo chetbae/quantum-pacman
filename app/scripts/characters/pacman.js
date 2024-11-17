@@ -14,7 +14,9 @@ class Pacman {
 
     // Flash ability, triggered by 10 dots
     this.flashActive = false;
-    this.flashRadius = 140; // TO CHANGE
+
+    // Flash Radius in Grid Position
+    this.flashRadius = 8;
 
     // Add a listener for 'activateFlash'
     window.addEventListener("activateFlash", () => {
