@@ -186,6 +186,30 @@ class GameCoordinator {
 
     this.dotCounter = 0;
 
+    // Pinky, Inky, and Clyde have not left the Ghost House
+    this.pinkyLeft = false;
+    this.inkyLeft = false;
+    this.clydeLeft = false;
+
+    // Every time a ghost leaves the House, update statuses
+    let ghostCounter = 1;
+    window.addEventListener("releaseGhost", () => {
+      switch (ghostCounter) {
+        case 1:
+          this.pinkyLeft = true;
+          ghostCounter += 1;
+          break;
+        case 2:
+          this.inkyLeft = true;
+          ghostCounter += 1;
+          break;
+        case 3:
+          this.clydeLeft = true;
+          ghostCounter += 1;
+          break;
+      }
+
+    });
     // Listen for pellet consumption events
     window.addEventListener("dotEaten", () => {
       this.dotCounter++;
@@ -199,8 +223,33 @@ class GameCoordinator {
           // Teleport the ghost to a certain location
           const newLocation = getRandomValidCoordinate(rowsFreq, colsFreq, this.invalidSet);
 
-          ghost.teleport(newLocation.col, newLocation.row);
-          ghost.expose(this.flashMs);
+          // Checks if each ghost has permission to be teleported
+          switch (ghost.name) {
+            case "blinky":
+              if (ghost.idleMode != "idle") {
+                ghost.teleport(newLocation.col, newLocation.row);
+                ghost.expose(this.flashMs);
+              }
+              break;
+            case "pinky":
+              if (ghost.idleMode != "idle" && this.pinkyLeft) {
+                ghost.teleport(newLocation.col, newLocation.row);
+                ghost.expose(this.flashMs);
+              }
+              break;
+            case "inky":
+              if (ghost.idleMode != "idle" && this.inkyLeft) {
+                ghost.teleport(newLocation.col, newLocation.row);
+                ghost.expose(this.flashMs);
+              }
+              break;
+            case "clyde":
+              if (ghost.idleMode != "idle" && this.clydeLeft) {
+                ghost.teleport(newLocation.col, newLocation.row);
+                ghost.expose(this.flashMs);
+              }
+              break;
+          }
         });
       }
     });
