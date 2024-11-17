@@ -108,7 +108,10 @@ class GameCoordinator {
       this.dotCounter++;
 
       // Check if the counter is greater than or equal to 10
-      if (this.dotCounter == 10) {
+      if (this.dotCounter === 10) {
+        // Don't flash if still in big flash cooldown
+        if (this.ghosts.some((ghost) => ghost.mode == "scared")) return;
+
         window.dispatchEvent(new Event("activateFlash"));
         this.dotCounter = 0;
 
@@ -126,6 +129,8 @@ class GameCoordinator {
     );
 
     return this.ghosts.filter((ghost) => {
+      if (["scared"]) return false;
+
       const ghostGridPosition = ghost.characterUtil.determineGridPosition(
         ghost.position,
         this.scaledTileSize
