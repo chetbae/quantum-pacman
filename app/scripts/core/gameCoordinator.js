@@ -114,10 +114,21 @@ class GameCoordinator {
 
         this.findGhostsExposed().forEach((ghost) => {
           ghost.expose(750);
-          ghost.teleport(13.5, 10);
+
+          // Teleport the ghost to a certain location
+          const newLocation = this.calculateCertainLocation();
+          ghost.teleport(newLocation.gridX, newLocation.gridY);
         });
       }
     });
+  }
+
+  // THIS SHOULD BE REPLACED WITH THE PROBABILITY DENSITY CALCULATION
+  calculateCertainLocation() {
+    return {
+      gridX: 13.5,
+      gridY: 10,
+    };
   }
 
   findGhostsExposed() {
