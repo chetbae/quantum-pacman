@@ -20,11 +20,105 @@
       <div id='fps-display' class='fps-display'></div>
       <div id='preload-div' class='preload-div'></div>
 
+      <div id="tutorial-modals" class="tutorial-modals">
+        <!-- Modal 1 -->
+        <div class="tutorial-modal" id="modal-1">
+          <div class="tutorial-modal-content">
+            <h2 class="tutorial-title">Welcome to the classic arcade game Pac-Man but with a quantum physics twist!</h2>
+            <p class="tutorial-text">Here's how to play</p>
+            <div class="tutorial-nav">
+              <button class="tutorial-skip-btn">Skip Tutorial</button>
+              <button class="tutorial-next-btn">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal 2 -->
+        <div class="tutorial-modal" id="modal-2">
+          <div class="tutorial-modal-content">
+            <p class="tutorial-text">1. Gobble and swallow pellets to gain points. Duh!</p>
+            <div class="tutorial-nav">
+              <button class="tutorial-next-btn">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal 3 -->
+        <div class="tutorial-modal" id="modal-3">
+          <div class="tutorial-modal-content">
+            <p class="tutorial-text">2. Careful! The ghosts (inky, blinky, pinky, and clyde) exist to hunt you down. But in this game, they act as quantum particles!</p>
+            <div class="tutorial-ghosts">
+              <img src="app/style/graphics/spriteSheets/characters/ghosts/inky/inky_right.svg" alt="Inky">
+              <img src="app/style/graphics/spriteSheets/characters/ghosts/blinky/blinky_right.svg" alt="Blinky">
+              <img src="app/style/graphics/spriteSheets/characters/ghosts/pinky/pinky_right.svg" alt="Pinky">
+              <img src="app/style/graphics/spriteSheets/characters/ghosts/clyde/clyde_right.svg" alt="Clyde">
+            </div>
+            <div class="tutorial-nav">
+              <button class="tutorial-next-btn">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal 4 -->
+        <div class="tutorial-modal" id="modal-4">
+          <div class="tutorial-modal-content">
+            <h3 class="tutorial-subtitle">What does this mean?</h3>
+            <p class="tutorial-text">The ghost's positions are not deterministic but instead given as probability distribution. This effectively makes all ghosts invisible, and there is little certainty in their position at any given time.</p>
+            <div class="flicker-ghosts">
+              <img src="app/style/graphics/spriteSheets/characters/ghosts/blinky/blinky_right.svg" alt="Blinky">
+              <img src="app/style/graphics/spriteSheets/characters/ghosts/blinky/blinky_right.svg" alt="Blinky">
+              <img src="app/style/graphics/spriteSheets/characters/ghosts/blinky/blinky_right.svg" alt="Blinky">
+              <img src="app/style/graphics/spriteSheets/characters/ghosts/blinky/blinky_right.svg" alt="Blinky">
+            </div>
+            <div class="tutorial-nav">
+              <button class="tutorial-next-btn">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal 5 -->
+        <div class="tutorial-modal" id="modal-5">
+          <div class="tutorial-modal-content">
+            <p class="tutorial-text">Wait!</p><br>
+            <p class="tutorial-text">When Pac-Man eats a certain number of pellets, he emits a <span class="highlight">FLASH</span>, making the area around him visible where all ghosts caught inside will 'collapse' to their true positions.</p>
+            <div class="tutorial-demo">
+              <img src="app/style/graphics/pacman.gif" alt="Pacman" class="demo-pacman">
+              <img src="app/style/graphics/spriteSheets/characters/pacman/flash.svg" alt="Flash" class="demo-flash">
+            </div>
+            <div class="tutorial-nav">
+              <button class="tutorial-next-btn">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal 6 -->
+        <div class="tutorial-modal" id="modal-6">
+          <div class="tutorial-modal-content">
+            <p class="tutorial-text">When Pac-Man consumes a power-pellet, he will flash the entire board, forcing all ghosts to collapse to their positions and making them vulnerable to consume so that their flesh are quantified into points.</p>
+            <br>
+            <div class="tutorial-ghosts">
+              <img src="app/style/graphics/spriteSheets/characters/ghosts/scared_blue.svg" alt="scared_blue">
+              <img src="app/style/graphics/spriteSheets/characters/ghosts/scared_white.svg" alt="scared_blue">
+              <img src="app/style/graphics/spriteSheets/characters/ghosts/scared_blue.svg" alt="scared_blue">
+              <img src="app/style/graphics/spriteSheets/characters/ghosts/scared_white.svg" alt="scared_blue">
+            </div>
+            <p class="tutorial-text">Bonne chance!</p>
+            <div class="tutorial-nav">
+              <button class="tutorial-next-btn">Start Game!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div id='main-menu-container' class='main-menu-container'>
         <img id='logo' class='logo' src='app/style/graphics/pacman_logo.png'>
         <button id='game-start' class='game-start'>
           PLAY
         </button>
+        <br>    
+        <div id="tutorial-link" class="tutorial-link">
+          Tutorial
+        </div>
       </div>
 
       <div class='header-buttons'>
@@ -49,7 +143,7 @@
             <div id='points-display'></div>
           </div>
           <div class='column _50'>
-            <div>HIGH SCORE</div>
+            <div>QUANTUM SCORE</div>
             <div id='high-score-display'></div>
           </div>
         </div>
@@ -57,6 +151,7 @@
         <div id='maze' class='maze'>
           <img id='maze-img' class='maze-img' src='app/style//graphics/spriteSheets/maze/maze_blue.svg'>
           <div id='maze-cover' class='maze-cover'></div>
+          <div id='maze-flash' class='maze-flash'></div>
           <div id='dot-container'></div>
           <p id='pacman-flash' class='pacman-flash'></p>
           <p id='pacman' class='pacman'></p>

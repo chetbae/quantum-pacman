@@ -1333,6 +1333,10 @@ class GameCoordinator {
     this.pausedText = document.getElementById("paused-text");
     this.bottomRow = document.getElementById("bottom-row");
     this.movementButtons = document.getElementById("movement-buttons");
+    this.tutorialLink = document.getElementById("tutorial-link");
+
+    // Initialize the tutorial link visibility
+    this.initTutorialLink();
 
     this.mazeArray = [
       ["XXXXXXXXXXXXXXXXXXXXXXXXXXXX"],
@@ -1493,6 +1497,21 @@ class GameCoordinator {
     });
   }
 
+  initTutorialLink() {
+    const tutorialSeen = localStorage.getItem("tutorialSeen");
+
+    // Only show link if tutorial has been seen before
+    if (tutorialSeen) {
+      this.tutorialLink.style.display = "block";
+      this.tutorialLink.addEventListener("click", () => {
+        // Prevent any game start transitions
+        this.showTutorial();
+      });
+    } else {
+      this.tutorialLink.style.display = "none";
+    }
+  }
+
   findGhostsWithinRadius() {
     const pacmanGridPosition = this.pacman.characterUtil.determineGridPosition(
       this.pacman.position,
@@ -1555,6 +1574,19 @@ class GameCoordinator {
    * Reveals the game underneath the loading covers and starts gameplay
    */
   startButtonClick() {
+    const tutorialSeen = localStorage.getItem("tutorialSeen");
+    console.log(tutorialSeen);
+
+    if (!tutorialSeen) {
+      this.showTutorial();
+    } else {
+      this.startGame();
+    }
+  }
+
+  startGame() {
+    console.log("Starting game...");
+
     this.leftCover.style.left = "-50%";
     this.rightCover.style.right = "-50%";
     this.mainMenu.style.opacity = 0;
@@ -1570,6 +1602,48 @@ class GameCoordinator {
       this.init();
     }
     this.startGameplay(true);
+  }
+
+  showTutorial() {
+    const tutorialModals = document.getElementById("tutorial-modals");
+    tutorialModals.style.display = "flex";
+    let currentModal = 1;
+
+    const showModal = (modalNumber) => {
+      document.querySelectorAll(".tutorial-modal").forEach((modal) => {
+        modal.style.display = "none";
+      });
+      const currentModalElement = document.getElementById(`modal-${modalNumber}`);
+      if (currentModalElement) {
+        currentModalElement.style.display = "block";
+      }
+    };
+
+    const endTutorial = () => {
+      tutorialModals.style.display = "none";
+      localStorage.setItem("tutorialSeen", "true");
+      this.startGame();
+    };
+
+    showModal(1);
+
+    // Skip button handler (only on first modal)
+    const skipBtn = document.querySelector(".tutorial-skip-btn");
+    if (skipBtn) {
+      skipBtn.addEventListener("click", endTutorial);
+    }
+
+    // Next button handlers
+    document.querySelectorAll(".tutorial-next-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        currentModal++;
+        if (currentModal <= 6) {
+          showModal(currentModal);
+        } else {
+          endTutorial();
+        }
+      });
+    });
   }
 
   /**

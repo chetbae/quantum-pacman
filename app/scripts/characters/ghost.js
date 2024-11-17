@@ -15,6 +15,46 @@ class Ghost {
     this.reset();
   }
 
+  /**
+   * Teleports the ghost to a specific grid coordinate
+   * @param {number} gridX - The target X coordinate on the maze grid
+   * @param {number} gridY - The target Y coordinate on the maze grid
+   */
+  teleport(gridX, gridY) {
+    // Convert grid coordinates to pixel coordinates
+    const newPosition = {
+      left: (gridX - 0.5) * this.scaledTileSize,
+      top: (gridY - 0.5) * this.scaledTileSize,
+    };
+
+    // Update the physics positions
+    this.position = Object.assign({}, newPosition);
+    this.oldPosition = Object.assign({}, newPosition);
+
+    // Update the visual position immediately
+    this.animationTarget.style.left = `${newPosition.left}px`;
+    this.animationTarget.style.top = `${newPosition.top}px`;
+
+    const gridPosition = this.characterUtil.determineGridPosition(
+      this.position,
+      this.scaledTileSize
+    );
+
+    // Get possible moves at new position
+    const possibleMoves = this.determinePossibleMoves(gridPosition, this.direction, this.mazeArray);
+
+    // If current direction is invalid at new position, choose a new valid direction
+    if (!possibleMoves[this.direction]) {
+      const validDirections = Object.keys(possibleMoves);
+      if (validDirections.length > 0) {
+        this.direction = validDirections[0];
+      }
+    }
+
+    // Update sprite sheet for new direction
+    this.setSpriteSheet(this.name, this.direction, this.mode);
+  }
+
   // New method to expose ghost for a specified duration
   expose(duration) {
     this.quantumVisible = true;
@@ -202,7 +242,7 @@ class Ghost {
     } else {
       this.animationTarget.style.backgroundImage =
         "url(app/style/graphics/" + `spriteSheets/characters/ghosts/eyes_${direction}.svg)`;
-      // this.animationTarget.style.backgroundImage = null; <--- uncomment this later
+      // this.animationTarget.style.backgroundImage = null; //<--- uncomment this later
     }
   }
 

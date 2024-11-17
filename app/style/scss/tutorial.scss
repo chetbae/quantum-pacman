@@ -1,0 +1,244 @@
+.tutorial-link {
+  color: black;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 20px;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.tutorial-link:hover {
+  color: blue;
+}
+
+.tutorial-modals {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Lowered opacity from 0.8 to 0.5 */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.tutorial-modal {
+  background: #000;
+  border: 6px solid #2121ff; /* Increased border width from 4px to 6px */
+  border-radius: 24px; /* Added round corners */
+  padding: 40px; /* Increased padding from 30px */
+  width: 60vw;
+  height: 60vh;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.tutorial-modal-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 80px; /* Added more internal padding */
+  overflow-y: auto;
+}
+
+/* Moved navigation to bottom right */
+.tutorial-nav {
+  position: absolute; /* Changed to absolute positioning */
+  bottom: 30px; /* Distance from bottom */
+  right: 30px; /* Distance from right */
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.tutorial-next-btn,
+.tutorial-skip-btn {
+  padding: 12px 24px; /* Slightly larger buttons */
+  background: #2121ff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s;
+  border-radius: 8px; /* Rounded button corners to match modal */
+}
+
+.tutorial-next-btn:hover,
+.tutorial-skip-btn:hover {
+  background: #4848ff;
+}
+
+/* Adjust ghost row styling */
+.tutorial-ghosts,
+.flicker-ghosts {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 30px 0;
+  width: 80%;
+}
+
+.tutorial-ghosts img {
+  height: 50px;
+  width: 50px;
+}
+
+.flicker-ghosts img {
+  height: 50px;
+  width: 50px;
+  animation: flicker 5s infinite;
+  opacity: 0; /* Base opacity when not fully visible */
+}
+
+/* Give each ghost a different animation timing */
+.flicker-ghosts img:nth-child(1) {
+  animation-duration: 1.5s;
+  animation-delay: 0.2s;
+}
+
+.flicker-ghosts img:nth-child(2) {
+  animation-duration: 2.1s;
+  animation-delay: 0.7s;
+}
+
+.flicker-ghosts img:nth-child(3) {
+  animation-duration: 1.8s;
+  animation-delay: 0.4s;
+}
+
+.flicker-ghosts img:nth-child(4) {
+  animation-duration: 2.3s;
+  animation-delay: 0.1s;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  75% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+/* Add hover effect to make them fully visible */
+.flicker-ghosts img:hover {
+  animation: none;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+/* Text styling */
+.tutorial-title {
+  color: #ffff00;
+  font-size: 28px; /* Slightly larger */
+  margin-bottom: 30px;
+}
+
+.tutorial-subtitle {
+  color: #ffff00;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.tutorial-text {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.highlight {
+  color: yellow;
+}
+
+.tutorial-demo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 30px 0;
+  height: 150px; /* Adjust as needed */
+}
+
+.demo-pacman {
+  width: 50px;
+  height: 50px;
+  z-index: 2;
+  position: relative;
+}
+
+.demo-flash {
+  position: absolute;
+  width: 150px; /* Larger than Pacman */
+  height: 150px;
+  opacity: 0.6;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+}
+.tutorial-demo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 30px 0;
+  height: 200px; /* Adjust as needed */
+}
+
+.demo-pacman {
+  width: 50px;
+  height: 50px;
+  z-index: 2;
+  position: relative;
+}
+
+.demo-flash {
+  position: absolute;
+  width: 200px; /* Larger than Pacman */
+  height: 200px;
+  opacity: 0.8;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+}
