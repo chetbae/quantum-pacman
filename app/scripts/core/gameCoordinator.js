@@ -182,6 +182,8 @@ class GameCoordinator {
     this.invalidSet = getInvalidCoordinates(this.mazeArray);
 
     this.flashMs = 1000;
+    this.mazeFlash = document.getElementById("maze-flash");
+
     this.dotCounter = 0;
 
     // Listen for pellet consumption events
@@ -1152,13 +1154,27 @@ class GameCoordinator {
   }
 
   /**
-   * Upon eating a power pellet, sets the ghosts to 'scared' mode
-   * ADD LARGE FLASH
+   * Upon eating a power pellet, sets the ghosts to 'scared' mode and triggers the maze flash
    */
   powerUp() {
     if (this.remainingDots !== 0) {
       this.soundManager.setAmbience("power_up");
     }
+
+    // Staged flash sequence
+    this.mazeFlash.style.transition = "none";
+    this.mazeFlash.style.opacity = "0.6";
+
+    setTimeout(() => {
+      this.mazeFlash.style.transition = "opacity 1s ease-out";
+      this.mazeFlash.style.opacity = "0.4";
+      setTimeout(() => {
+        this.mazeFlash.style.opacity = "0.2";
+        setTimeout(() => {
+          this.mazeFlash.style.opacity = "0";
+        }, 500);
+      }, 500);
+    }, 500);
 
     this.removeTimer({ detail: { timer: this.ghostFlashTimer } });
 
