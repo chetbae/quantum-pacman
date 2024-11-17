@@ -97,6 +97,7 @@ class GameCoordinator {
     this.bottomRow = document.getElementById("bottom-row");
     this.movementButtons = document.getElementById("movement-buttons");
     this.tutorialLink = document.getElementById("tutorial-link");
+    this.mazeFlash = document.getElementById("maze-flash");
 
     // Initialize the tutorial link visibility
     this.initTutorialLink();
@@ -186,7 +187,6 @@ class GameCoordinator {
     this.invalidSet = getInvalidCoordinates(this.mazeArray);
 
     this.flashMs = 1000;
-    this.mazeFlash = document.getElementById("maze-flash");
 
     this.dotCounter = 0;
 
@@ -217,9 +217,12 @@ class GameCoordinator {
     window.addEventListener("dotEaten", () => {
       this.dotCounter++;
 
-      if (this.dotCounter == 10) {
+      if (this.dotCounter >= 10) {
         // Don't flash or teleport if still in big flash cooldown
-        if (this.ghosts.some((ghost) => ghost.mode == "scared")) return;
+        if (this.scaredGhosts.length > 0) {
+          this.dotCounter = 0;
+          return;
+        }
 
         window.dispatchEvent(new Event("activateFlash"));
         this.dotCounter = 0;
@@ -338,7 +341,6 @@ class GameCoordinator {
    */
   startButtonClick() {
     const tutorialSeen = localStorage.getItem("tutorialSeen");
-    console.log(tutorialSeen);
 
     if (!tutorialSeen) {
       this.showTutorial();
