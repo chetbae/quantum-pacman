@@ -78,6 +78,7 @@ class Ghost {
       delete this.cruiseElroy;
     }
 
+    this.quantumVisible = false;
     this.setDefaultMode();
     this.setMovementStats(this.pacman, this.name, this.level);
     this.setSpriteAnimationStats();
