@@ -181,6 +181,7 @@ class GameCoordinator {
 
     this.invalidSet = getInvalidCoordinates(this.mazeArray);
 
+    this.flashMs = 1000;
     this.dotCounter = 0;
 
     // Listen for pellet consumption events
@@ -197,7 +198,7 @@ class GameCoordinator {
           const newLocation = getRandomValidCoordinate(rowsFreq, colsFreq, this.invalidSet);
 
           ghost.teleport(newLocation.col, newLocation.row);
-          ghost.expose(750);
+          ghost.expose(this.flashMs);
         });
       }
     });
@@ -514,7 +515,12 @@ class GameCoordinator {
         this.collisionDetectionLoop();
       }, 500);
 
-      this.pacman = new Pacman(this.scaledTileSize, this.mazeArray, new CharacterUtil());
+      this.pacman = new Pacman(
+        this.scaledTileSize,
+        this.mazeArray,
+        new CharacterUtil(),
+        this.flashMs
+      );
       this.blinky = new Ghost(
         this.scaledTileSize,
         this.mazeArray,
