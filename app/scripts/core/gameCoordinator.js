@@ -385,14 +385,7 @@ class GameCoordinator {
     const endTutorial = () => {
       tutorialModals.style.display = "none";
       localStorage.setItem("tutorialSeen", "true");
-
-      // Only start game if this was first time viewing tutorial
-      if (!localStorage.getItem("tutorialSeen")) {
-        this.startGame();
-      } else {
-        // If replaying tutorial, just show the link again
-        this.initTutorialLink();
-      }
+      this.startGame();
     };
 
     showModal(1);
