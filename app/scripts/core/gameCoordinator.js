@@ -1,3 +1,81 @@
+/**
+ * @author Cam
+ * @param {*} maze matrix
+ * @returns invalid coordinates
+ */
+function getInvalidCoordinates(maze) {
+  const rows = maze.length;
+  const columns = maze[0].length;
+
+  // Ghost spawn
+  const enclosedBox = {
+    top: 10, // Start of the box in row (inclusive)
+    bottom: 19, // End of the box in row (inclusive)
+    left: 8, // Start of the box in column (inclusive)
+    right: 20, // End of the box in column (inclusive)
+  };
+
+  function isInEnclosedBox(row, col) {
+    return (
+      row >= enclosedBox.top &&
+      row <= enclosedBox.bottom &&
+      col >= enclosedBox.left &&
+      col <= enclosedBox.right
+    );
+  }
+
+  const invalidSet = new Set();
+
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < columns; j++) {
+      if (maze[i][j] === "X" || isInEnclosedBox(i, j)) {
+        invalidSet.add(`${i},${j}`);
+      }
+    }
+  }
+
+  return invalidSet;
+}
+
+// Weighted probability of a ghost teleporting in a particular row or column
+const rowsFreq = [
+  1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 11,
+  11, 11, 11, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 16,
+  16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19,
+  19, 19, 20, 20, 20, 20, 20, 21, 21, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23,
+  23, 24, 24, 25, 25, 25, 26, 26, 26, 26, 26, 26, 26, 27, 27, 28, 28, 29,
+];
+const colsFreq = [
+  1, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 11,
+  11, 11, 11, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 16,
+  16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 19,
+  19, 19, 20, 20, 20, 20, 20, 21, 21, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23,
+  23, 24, 24, 25, 25, 25, 26, 26, 26, 26, 26, 26, 26, 27, 27,
+];
+
+/**
+ * @author Cam
+ * @param {*} rowsFreq
+ * @param {*} colsFreq
+ * @param {*} invalidSet
+ * @returns valid coordinate {row, col}
+ */
+function getRandomValidCoordinate(rowsFreq, colsFreq, invalidSet) {
+  let validCoordinateFound = false;
+  let randomRow, randomCol;
+
+  while (!validCoordinateFound) {
+    randomRow = rowsFreq[Math.floor(Math.random() * rowsFreq.length)];
+    randomCol = colsFreq[Math.floor(Math.random() * colsFreq.length)];
+
+    if (!invalidSet.has(`${randomRow},${randomCol}`)) {
+      validCoordinateFound = true;
+    }
+  }
+
+  return { row: randomRow, col: randomCol };
+}
+
 class GameCoordinator {
   constructor() {
     this.gameUi = document.getElementById("game-ui");
@@ -101,6 +179,8 @@ class GameCoordinator {
 
     head.appendChild(link);
 
+    this.invalidSet = getInvalidCoordinates(this.mazeArray);
+
     this.dotCounter = 0;
 
     // Listen for pellet consumption events
@@ -113,22 +193,14 @@ class GameCoordinator {
         this.dotCounter = 0;
 
         this.findGhostsExposed().forEach((ghost) => {
-          ghost.expose(750);
-
           // Teleport the ghost to a certain location
-          const newLocation = this.calculateCertainLocation();
-          ghost.teleport(newLocation.gridX, newLocation.gridY);
+          const newLocation = getRandomValidCoordinate(rowsFreq, colsFreq, this.invalidSet);
+
+          ghost.teleport(newLocation.col, newLocation.row);
+          ghost.expose(750);
         });
       }
     });
-  }
-
-  // THIS SHOULD BE REPLACED WITH THE PROBABILITY DENSITY CALCULATION
-  calculateCertainLocation() {
-    return {
-      gridX: 13.5,
-      gridY: 10,
-    };
   }
 
   findGhostsExposed() {

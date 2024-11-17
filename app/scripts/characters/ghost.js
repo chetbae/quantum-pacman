@@ -27,6 +27,9 @@ class Ghost {
       top: (gridY - 0.5) * this.scaledTileSize,
     };
 
+    // Verbose logging (for demo?)
+    console.log(`Teleporting ${this.name} to ${gridX}, ${gridY}`);
+
     // Update the physics positions
     this.position = Object.assign({}, newPosition);
     this.oldPosition = Object.assign({}, newPosition);
