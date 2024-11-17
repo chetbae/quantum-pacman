@@ -230,31 +230,35 @@ class GameCoordinator {
         this.findGhostsWithinRadius().forEach((ghost) => {
           // Teleport the ghost to a certain location
           const newLocation = getRandomValidCoordinate(rowsFreq, colsFreq, this.invalidSet);
-
+          const teleportSound = "teleport";
           // Checks if each ghost has permission to be teleported
           switch (ghost.name) {
             case "blinky":
               if (ghost.idleMode != "idle") {
                 ghost.teleport(newLocation.col, newLocation.row);
                 ghost.expose(this.flashMs);
+                this.soundManager.play("wave_collapse");
               }
               break;
             case "pinky":
               if (ghost.idleMode != "idle" && this.pinkyLeft) {
                 ghost.teleport(newLocation.col, newLocation.row);
                 ghost.expose(this.flashMs);
+                this.soundManager.play("wave_collapse");
               }
               break;
             case "inky":
               if (ghost.idleMode != "idle" && this.inkyLeft) {
                 ghost.teleport(newLocation.col, newLocation.row);
                 ghost.expose(this.flashMs);
+                this.soundManager.play("wave_collapse");
               }
               break;
             case "clyde":
               if (ghost.idleMode != "idle" && this.clydeLeft) {
                 ghost.teleport(newLocation.col, newLocation.row);
                 ghost.expose(this.flashMs);
+                this.soundManager.play("wave_collapse");
               }
               break;
           }
