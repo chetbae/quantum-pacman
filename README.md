@@ -1,3 +1,5 @@
+Try this link if the other doesn't work! https://quantum-pacman.vercel.app/
+
 # Quantum Pacman ![Pacman](/app/style/graphics/spriteSheets/characters/pacman/pacman_right.svg) ⚛️ ![Blinky](/app/style/graphics/spriteSheets/characters/ghosts/blinky/blinky_left_angry.svg)
 
 The classic game of Pacman but with a quantum twist!
