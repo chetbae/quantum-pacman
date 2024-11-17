@@ -208,18 +208,19 @@ class GameCoordinator {
           ghostCounter += 1;
           break;
       }
-
     });
     // Listen for pellet consumption events
     window.addEventListener("dotEaten", () => {
       this.dotCounter++;
 
-      // Check if the counter is greater than or equal to 10
       if (this.dotCounter == 10) {
+        // Don't flash or teleport if still in big flash cooldown
+        if (this.ghosts.some((ghost) => ghost.mode == "scared")) return;
+
         window.dispatchEvent(new Event("activateFlash"));
         this.dotCounter = 0;
 
-        this.findGhostsExposed().forEach((ghost) => {
+        this.findGhostsWithinRadius().forEach((ghost) => {
           // Teleport the ghost to a certain location
           const newLocation = getRandomValidCoordinate(rowsFreq, colsFreq, this.invalidSet);
 
@@ -255,13 +256,30 @@ class GameCoordinator {
     });
   }
 
-  findGhostsExposed() {
+  findGhostsWithinRadius() {
+    const pacmanGridPosition = this.pacman.characterUtil.determineGridPosition(
+      this.pacman.position,
+      this.scaledTileSize
+    );
+
     return this.ghosts.filter((ghost) => {
-      const distance = Math.sqrt(
-        (ghost.position.left - this.pacman.position.left) ** 2 +
-          (ghost.position.top - this.pacman.position.top) ** 2
+      const ghostGridPosition = ghost.characterUtil.determineGridPosition(
+        ghost.position,
+        this.scaledTileSize
       );
-      return distance < this.pacman.flashRadius;
+
+      // Ignore ghosts in ghost house
+      if (ghost.isInGhostHouse(ghostGridPosition)) return false;
+
+      const a = pacmanGridPosition.x - ghostGridPosition.x;
+      const b = pacmanGridPosition.y - ghostGridPosition.y;
+      const distance = Math.sqrt(a * a + b * b);
+
+      const shouldExpose = distance < this.pacman.flashRadius;
+
+      if (shouldExpose) console.log(ghost.name + "'s wave function has collapsed!");
+
+      return shouldExpose;
     });
   }
 
