@@ -32,9 +32,7 @@ Scripts: "app/scripts", and at "build" folder
 <br>Images and spritesheets: "app/style/graphics"
 
 ## Demo
-
-![image](https://user-images.githubusercontent.com/92959844/152112411-5c52087d-2f2c-49c2-b8df-a2e9bbfc55d5.png)
-(this is only a screenshot as fullscreen mode)(press F11)
+<img width="413" alt="Screenshot 2024-11-17 at 10 50 02 AM" src="https://github.com/user-attachments/assets/29afd130-59fb-4bba-bb24-c6d2e2885b5d">
 
 ## Links
 
