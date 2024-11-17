@@ -32,7 +32,9 @@ Scripts: "app/scripts", and at "build" folder
 <br>Images and spritesheets: "app/style/graphics"
 
 ## Demo
-<div><img width="413" alt="Screenshot 2024-11-17 at 10 50 02 AM" src="https://github.com/user-attachments/assets/29afd130-59fb-4bba-bb24-c6d2e2885b5d">
+<div align="center">
+<img width="413" alt="Screenshot 2024-11-17 at 10 50 02 AM" src="https://github.com/user-attachments/assets/29afd130-59fb-4bba-bb24-c6d2e2885b5d">
+</div>
 
 ## Links
 
