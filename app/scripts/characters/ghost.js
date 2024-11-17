@@ -808,6 +808,9 @@ class Ghost {
         );
         this.mode = "eyes";
       } else {
+        this.quantumVisible = true;
+        this.setSpriteSheet(this.name, this.direction, this.mode);
+
         window.dispatchEvent(new Event("deathSequence"));
       }
     }
