@@ -3,10 +3,6 @@
     "serve": "http-server",
     "build": "gulp"
   },
-  "engines": {
-    "node": ">=23.2.0",
-    "npm": ">=10.9.0"
-  },
   "devDependencies": {
     "gulp": "^5.0.0",
     "gulp-concat": "^2.6.1",
