@@ -1,19 +1,16 @@
-# Pacman (web)
+# Quantum Pacman 
 
-This is an online game of Pacman
+This is an online game of the classic game of Pacman but with a quantum twist!
 
-## Instructions
+## Quantum Features
+Welcome to the classic arcade game Pacman but with a quantum physics twist!H ere’s how to play:
+<br> Use the WASD or the arrow keys on your keyboard if you are on PC
+<br> Gobble and swallow pellets to gain points.
+<br> Careful! The ghosts (inky, blinky, pinky, and clyde) exist to hunt you down. But in this game, they act as quantum particles!
+<br> What does this mean? It means the position of all ghosts is not deterministic but instead given as probability distribution. Effectively, this makes all ghosts invisible, and there is little certainty in their position at any given time.
+<br> Wait! When Pacman eats a certain number of pellets, he will ‘flash’ himself around a certain radius, making the area around him visible where all ghosts caught inside will ‘collapse’ to their true positions. 
+<br> When Pacman consumes a power-pellet, he will flash the entire board, forcing all ghosts to collapse to their positions and making them vulnerable to consume so that their flesh are quantified into points.
 
-Use the WASD or the arrow keys on your keyboard if you are on PC
-<br>Use the arrow symbols/buttons to move
-<br>Eat all pellets (balls) to win the round
-<br>Eat a power pellet (a big ball) to get a chance to eat them
-<br>PS: you can only eat them if they are blue, and they can respawn
-<br>Eat a fruit for a bonus score, many different friuts on different rounds
-<br>You can pause the game (pause button is at the top left corner)
-<br>You can also mute the sounds (next to the pause button)
-<br>You have 3 lives before it is game over
-<br>If you keep playing, you could gain an extra life
 
 ## Features
 
@@ -39,20 +36,8 @@ Scripts: "app/scripts", and at "build" folder
 ![image](https://user-images.githubusercontent.com/92959844/152112411-5c52087d-2f2c-49c2-b8df-a2e9bbfc55d5.png)
 (this is only a screenshot as fullscreen mode)(press F11)
 
-## Notes
-
-The "Thank you" folder is for the thank you page for installing the Opera addon
-<br>This game is not offline, to play it offline, see the Opera addon at the "Links" section
-<br>(Only for Opera browsers)
-<br>The website was biult with [GitHub Pages](https://pages.github.com/)
-<br>I enabled iframe so you could iframe it on your wabsite
-<br>If you could share this then I really appreciate it
-
 ## Links
 
 [Click here to play](https://nicerwritter27.github.io/web-pacman/)
-<br>[Offline Opera addon](https://addons.opera.com/en/extensions/details/pacman/)
-<br>[Share on twitter](https://twitter.com/compose/tweet)
-<br>[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/U7U474RHW)
 
 #
