@@ -1,6 +1,6 @@
 # Quantum Pacman 
 
-This is an online game of the classic game of Pacman but with a quantum twist!
+This is an online version of the classic game of Pacman but with a quantum twist!
 
 ## Quantum Features
 Welcome to the classic arcade game Pacman but with a quantum physics twist!H ere’s how to play:
