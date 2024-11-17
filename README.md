@@ -11,19 +11,6 @@ Welcome to the classic arcade game Pacman but with a quantum physics twist!H ere
 <br> Wait! When Pacman eats a certain number of pellets, he will ‘flash’ himself around a certain radius, making the area around him visible where all ghosts caught inside will ‘collapse’ to their true positions. 
 <br> When Pacman consumes a power-pellet, he will flash the entire board, forcing all ghosts to collapse to their positions and making them vulnerable to consume so that their flesh are quantified into points.
 
-
-## Features
-
-Varius types of friuts
-<br>1st round: cherry, etc.
-<br>Blinky (red ghost) gets mad when you are almost done eating all of the pellets
-<br>(means he will chase you)
-<br>Nice animation
-<br>Pause and mute function
-<br>Different sound when paused
-<br>Starts with three lives
-<br>Gains extra life when gained enough points
-
 ## Sources
 
 Scripts: "app/scripts", and at "build" folder
