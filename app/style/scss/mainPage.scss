@@ -1,7 +1,7 @@
-@import 'variables';
+@import "variables";
 
 * {
-  font-family: 'Press Start 2P', sans-serif;
+  font-family: "Press Start 2P", sans-serif;
 }
 
 body {
@@ -82,13 +82,19 @@ body {
   justify-content: center;
 
   .one-up {
-    animation: blink .6s infinite;
+    animation: blink 0.6s infinite;
   }
 
   @keyframes blink {
-    0% {opacity: 0}
-    49% {opacity: 0}
-    50% {opacity: 1}
+    0% {
+      opacity: 0;
+    }
+    49% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
   }
 
   .row {
@@ -170,7 +176,7 @@ body {
   left: 0;
   opacity: 0;
   position: absolute;
-  transition: opacity .25s;
+  transition: opacity 0.25s;
   visibility: hidden;
   width: 100%;
   z-index: 5;
@@ -202,6 +208,50 @@ body {
   }
 }
 
+.credits {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 10px 15px;
+  text-align: right;
+}
+
+.hackathon {
+  color: $logo-black;
+  font-size: 10px;
+
+  a {
+    color: $logo-black;
+    text-decoration: none;
+
+    &:hover {
+      color: $blue;
+    }
+
+    &.github:hover {
+      color: $logo-red;
+      font-size: 12px;
+    }
+  }
+
+  .emoji {
+    font-size: 20px;
+  }
+}
+
+.original {
+  font-size: 8px;
+
+  a {
+    color: #d4bf00;
+    text-decoration: none;
+
+    &:hover {
+      color: #ff00a6;
+    }
+  }
+}
+
 .loading-container {
   background-color: $black;
   border: 5px solid $blue;
@@ -217,9 +267,9 @@ body {
 }
 
 .loading-pacman {
-  animation: loading-animation .3s steps(4) infinite;
+  animation: loading-animation 0.3s steps(4) infinite;
   background-color: $black;
-  background-image: url('../app/style/graphics/spriteSheets/characters/pacman/pacman_right.svg');
+  background-image: url("../app/style/graphics/spriteSheets/characters/pacman/pacman_right.svg");
   background-size: 192px;
   border-radius: 10px;
   height: 48px;
@@ -247,7 +297,7 @@ body {
 }
 
 .loading-dot {
-  background-image: url('../app/style/graphics/spriteSheets/pickups/pacdot.svg');
+  background-image: url("../app/style/graphics/spriteSheets/pickups/pacdot.svg");
   height: 6px;
   position: absolute;
   top: 50%;
@@ -256,25 +306,63 @@ body {
   z-index: -2;
 }
 
-._5 { left: 5%; }
-._10 { left: 10%; }
-._15 { left: 15%; }
-._20 { left: 20%; }
-._25 { left: 25%; }
-._30 { left: 30%; }
-._35 { left: 35%; }
-._40 { left: 40%; }
-._45 { left: 45%; }
-._50 { left: 50%; }
-._55 { left: 55%; }
-._60 { left: 60%; }
-._65 { left: 65%; }
-._70 { left: 70%; }
-._75 { left: 75%; }
-._80 { left: 80%; }
-._85 { left: 85%; }
-._90 { left: 90%; }
-._95 { left: 95%; }
+._5 {
+  left: 5%;
+}
+._10 {
+  left: 10%;
+}
+._15 {
+  left: 15%;
+}
+._20 {
+  left: 20%;
+}
+._25 {
+  left: 25%;
+}
+._30 {
+  left: 30%;
+}
+._35 {
+  left: 35%;
+}
+._40 {
+  left: 40%;
+}
+._45 {
+  left: 45%;
+}
+._50 {
+  left: 50%;
+}
+._55 {
+  left: 55%;
+}
+._60 {
+  left: 60%;
+}
+._65 {
+  left: 65%;
+}
+._70 {
+  left: 70%;
+}
+._75 {
+  left: 75%;
+}
+._80 {
+  left: 80%;
+}
+._85 {
+  left: 85%;
+}
+._90 {
+  left: 90%;
+}
+._95 {
+  left: 95%;
+}
 
 .movement-buttons {
   align-items: center;
@@ -303,9 +391,7 @@ body {
     user-select: none;
 
     &:active {
-      background: radial-gradient(
-        closest-side, $transparent-gray, transparent,
-      );
+      background: radial-gradient(closest-side, $transparent-gray, transparent);
     }
   }
 
@@ -358,7 +444,7 @@ body {
 
   .error-pacman {
     animation: error-animation 1.5s steps(12) infinite;
-    background-image: url('../app/style/graphics/spriteSheets/characters/pacman/pacman_error.svg');
+    background-image: url("../app/style/graphics/spriteSheets/characters/pacman/pacman_error.svg");
     background-size: 576px;
     height: 48px;
     margin-left: 10px;
