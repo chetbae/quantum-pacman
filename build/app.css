@@ -191,6 +191,44 @@ body {
   cursor: default;
 }
 
+.credits {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 10px 15px;
+  text-align: right;
+}
+
+.hackathon {
+  color: #231f20;
+  font-size: 10px;
+}
+.hackathon a {
+  color: #231f20;
+  text-decoration: none;
+}
+.hackathon a:hover {
+  color: #2121ff;
+}
+.hackathon a.github:hover {
+  color: #ee2a29;
+  font-size: 12px;
+}
+.hackathon .emoji {
+  font-size: 20px;
+}
+
+.original {
+  font-size: 8px;
+}
+.original a {
+  color: #d4bf00;
+  text-decoration: none;
+}
+.original a:hover {
+  color: #ff00a6;
+}
+
 .loading-container {
   background-color: #000;
   border: 5px solid #2121ff;
